@@ -37,7 +37,7 @@ test_reg = as.matrix(test_set[,3:5])
 #SARIMAX model
 sarimax_model = auto.arima(training_set$y, xreg=training_reg)
 
-#getting values of non seasonal and seasonal p,d,q
+#getting values of non sesoanal and seasonal p,d,q
 summary(sarimax_model)
 
 #comparing model with test set
