@@ -30,4 +30,9 @@ ndiffs(training_set$y,
       alpha = 0.05,
       test=c("adf")) #adf:augmented dickey fuller test
 
+#extracting regressor (to feed into model)
+training_reg = as.matrix(training_set[,3:5]) #regressor must be matrix form
+test_reg = as.matrix(test_set[,3:5])
 
+#SARIMAX model
+sarimax_model = auto.arima(training_set$y, xreg=training_reg)
