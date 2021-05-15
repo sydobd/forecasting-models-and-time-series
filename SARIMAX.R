@@ -55,7 +55,7 @@ accuracy(predictions_sarimax$mean, test_set$y)
 
 #extracting regressor 
 dataset_reg = as.matrix(dataset[,3:5])
-future_red = as.matrix(future[,3:5])
+future_reg = as.matrix(future[,3:5])
 
 #SARIMAX model
 sarimax_model2 = auto.arima(dataset$y, xreg=dataset_reg)
@@ -72,9 +72,9 @@ plot(future_sarimax, ylab="Demand", xlab="Time", main="SARIMAX")
 
 ##writing csvs of our models
 write.csv(predictions_sarimax$mean, 
-          file='8.MyEnsemble/Forecast/hw_prediction.csv',
+          file='MyEnsemble/Forecast/sarimax_prediction.csv',
           row.names = FALSE)
 write.csv(future_sarimax$mean,
-          file="8.MyEnsemble/Future/hw_future.csv",
+          file="MyEnsemble/Future/sarimax_future.csv",
           row.names = FALSE)
 
