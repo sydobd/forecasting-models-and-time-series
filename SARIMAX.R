@@ -50,3 +50,31 @@ plot(predictions_sarimax, ylab="Demand", xlab="Time", main="SARIMAX")
 
 #accuracy
 accuracy(predictions_sarimax$mean, test_set$y)
+
+##########################applying to whole data
+
+#extracting regressor 
+dataset_reg = as.matrix(dataset[,3:5])
+future_red = as.matrix(future[,3:5])
+
+#SARIMAX model
+sarimax_model2 = auto.arima(dataset$y, xreg=dataset_reg)
+
+
+#getting values of non seasonal and seasonal p,d,q
+summary(sarimax_model2)
+
+#forecasting
+future_sarimax = forecast(sarimax_model2, xreg=future_reg)
+
+#visualization
+plot(future_sarimax, ylab="Demand", xlab="Time", main="SARIMAX")
+
+##writing csvs of our models
+write.csv(predictions_sarimax$mean, 
+          file='8.MyEnsemble/Forecast/hw_prediction.csv',
+          row.names = FALSE)
+write.csv(future_sarimax$mean,
+          file="8.MyEnsemble/Future/hw_future.csv",
+          row.names = FALSE)
+
